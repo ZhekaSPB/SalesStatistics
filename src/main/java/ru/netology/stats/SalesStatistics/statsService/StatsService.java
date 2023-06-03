@@ -41,31 +41,27 @@ public class StatsService {
 
     public int salesBelowAverage(long[] sales) {
         int minMonth = 0; // количество месяцев, в которых продажи были ниже среднего
-        int maxMonth = 0;
+
         for (int i = 0; i < sales.length; i++) {
 
-            if (sales[i] < 15)
+            if (sales[i] < calculateSumSales(sales) / sales.length) {
                 minMonth = i;
-            else {
-                maxMonth = i;
             }
+
         }
         return minMonth;
     }
 
     public int salesAboveAverage(long[] sales) {
-        int minMonth = 0; // количество месяцев, в которых продажи были ниже среднего
-        int maxMonth = 0;
+        int maxMonth = 0; // количество месяцев, в которых продажи были выше среднего
         for (int i = 0; i < sales.length; i++) {
 
-            if (sales[i] > 15) maxMonth = i;
-            else {
-                minMonth = i;
+            if (sales[i] > calculateSumSales(sales) / sales.length) {
+                maxMonth = i;
             }
         }
         return maxMonth;
     }
 
 }
-
 
